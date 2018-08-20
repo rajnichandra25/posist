@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long int x = 0;
+
+class timeStamp{
+public :
+    int day;
+    int month;
+    int year;
+    int hh;
+    int min;
+    timeStamp(){
+        time_t t = time(0);   // get time now
+        tm* now = localtime(&t);
+        // set timeStamp
+        year    = now->tm_year + 1900;
+        month   = now->tm_mon + 1;
+        day     = now->tm_mday;
+        min     = (now->tm_min + 30 ) % 60;
+        if (min < 30)
+            hh      = ( now->tm_hour + 6 ) % 24;
+        else
+            hh      = ( now->tm_hour + 5 ) % 24;
+    }
+};
+class data {
+    // encrypted information
+    string owner;
+    string address;
+    string mobile;
+    string phone;
+    float value;
+};
+class node : public timeStamp, public data {
+public:
+    long long int count; // node number
+    int nodeId; // id of each node unique
+    node *parent;
+    int childNodeId; // stores unique id of child
+    node *child; // address of child node
+    node(){
+        count = ++x;
+        parent = NULL;
+        child = NULL;
+        nodeId = count; // counter will always be unique
+    }
+   
+};
+void createFirstNode(node *&head){
+    if(head!=NULL) {
+        cout<<"First node already created"<<endl;
+        return ;
+    }
+    node *n = new node;
+    head = n;
+    cout<<"First Node created"<<endl;
+    return ;
+}
+int main() {
+    node *head=NULL; // head pointer of first node
+    do{
+        cout<<"press 1 to create 1st node "<<endl
+            <<"press 2 to  multiset of first node"<<endl
+            <<"press 3 to add a new node to perticular set "<<endl
+            <<"press 4 to provide data and encryption "<<endl
+            <<"press 5 to verify the owner "<<endl
+            <<"press 6 to breaking up node or subnode by owner "<<endl
+            <<"press 7 to transfer ownership "<<endl
+            <<"press 8 to longest chain of main node"<<endl
+            <<"press 9 to longest chain of subnode"<<endl
+            <<"press 10 to merge two different set node"<<endl
+            <<"press -1 to terminate "<<endl;
+            int option;
+            cin>>option;
+            
+            switch(option){
+                case 1 : createFirstNode(head); break;
+                case 2 : break;
+                case 3 : break;
+                case 4 : break;
+                case 5 : break;
+                case 6 : break;
+                case 7 : break;
+                case 8 : break;
+                case 9 : break;
+                case 10 : break;
+                case -1 : cout<<"Terminated!!!"<<endl; exit(0); break;
+                default : cout<<"Incorect option!"<<endl<<" choose appropriate option"<<endl; break;
+            }
+    }while(true);
+}
